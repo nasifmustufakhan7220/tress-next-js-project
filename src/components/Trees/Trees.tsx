@@ -6,6 +6,10 @@ import Tree from "../Tree/Tree";
 const Trees = async () => {
   const trees: ITreeType[] = await getAllTrees();
 
+  if(!Array.isArray(trees)){
+    throw new Error("Failed to load tree data");
+  }
+
   return (
     <div className="relative z-10 mx-auto min-h-125 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="w-full">

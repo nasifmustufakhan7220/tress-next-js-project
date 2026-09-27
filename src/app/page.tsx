@@ -1,12 +1,15 @@
 import Banner from '@/components/Banner/Banner';
+import TreesSkeleton from '@/components/Skeleton/TreesSkeleton';
 import Trees from '@/components/Trees/Trees';
-import React from 'react';
+import React, { Suspense } from 'react';
 
 const HomePage = () => {
   return (
     <div>
       <Banner/>
-      <Trees/>
+      <Suspense fallback={<TreesSkeleton/>}>
+        <Trees/>
+      </Suspense>
     </div>
   );
 };
