@@ -7,18 +7,23 @@ interface ITreeContext {
     setCarts: Dispatch<SetStateAction<ITreeType[]>>;
     favourites:ITreeType[];
     setFavourites: Dispatch<SetStateAction<ITreeType[]>>;
+    toggle: boolean;
+    setToggle: Dispatch<SetStateAction<boolean>>;
 }
 
 export const TreeContext = createContext<ITreeContext>({
     carts: [],
     setCarts: ()=>{},
     favourites:[],
-    setFavourites: ()=>{}
+    setFavourites: ()=>{},
+    toggle: true,
+    setToggle: ()=>{}
 });
 const TreesContextProvider = ({children}:{children:ReactNode}) => {
 
     const [carts,setCarts] = useState<ITreeType[]>([]);
-    const [favourites, setFavourites] = useState<ITreeType[]>([])
+    const [favourites, setFavourites] = useState<ITreeType[]>([]);
+    const [toggle, setToggle] = useState<boolean>(true);
 
     // useEffect(()=>{
     //     const storedCartTrees = localStorage.getItem("cart");
@@ -32,7 +37,9 @@ const TreesContextProvider = ({children}:{children:ReactNode}) => {
         carts,
         setCarts,
         favourites,
-        setFavourites
+        setFavourites,
+        toggle,
+        setToggle
     };
     return <TreeContext.Provider value={contextObj}>
         {children}
