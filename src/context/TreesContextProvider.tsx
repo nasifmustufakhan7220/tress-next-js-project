@@ -1,6 +1,6 @@
 "use client"
 import { ITreeType } from "@/types/TreeType";
-import { createContext, Dispatch, ReactNode, SetStateAction, useState } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react";
 
 interface ITreeContext {
     carts:ITreeType[];
@@ -24,14 +24,34 @@ const TreesContextProvider = ({children}:{children:ReactNode}) => {
     const [carts,setCarts] = useState<ITreeType[]>([]);
     const [favourites, setFavourites] = useState<ITreeType[]>([]);
     const [toggle, setToggle] = useState<boolean>(true);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    // useEffect(()=>{
-    //     const storedCartTrees = localStorage.getItem("cart");
+    useEffect(()=>{
+        const cart = localStorage.getItem('carts');
+        const favourite = localStorage.getItem('favourites');
+        if(cart){
+            const cartParsed = JSON.parse(cart);
+            setCarts(cartParsed);
+        }
 
-    //     if(storedCartTrees){
-    //         const parsedCart = JSON.parse(storedCartTrees);
-    //     }
-    // },[]);
+        if(favourite){
+            const favouriteParsed = JSON.parse(favourite);
+            setFavourites(favouriteParsed);
+        }
+        setIsLoading(false);
+    },[]);
+
+    useEffect(()=>{
+        if(isLoading === false){
+            localStorage.setItem("carts", JSON.stringify(carts));
+        }
+    },[carts, isLoading]);
+
+    useEffect(()=>{
+        if(isLoading === false){
+            localStorage.setItem("favourites",JSON.stringify(favourites));
+        }
+    },[favourites,isLoading]);
 
     const contextObj = {
         carts,
