@@ -1,7 +1,8 @@
 "use client"
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaHeart, FaSearch, FaUserCircle } from "react-icons/fa";
+import { FaHeart, FaSearch } from "react-icons/fa";
+import { FaCartArrowDown } from "react-icons/fa6";
 
 const Navbar = () => {
     const pathname = usePathname();
@@ -43,14 +44,14 @@ const Navbar = () => {
           </div>
 
           {/* Favorite */}
-          <button className="text-xl transition hover:text-[#9cff3b]">
+          <div className="text-xl transition hover:text-[#9cff3b]">
             <FaHeart />
-          </button>
+          </div>
 
           {/* User */}
-          <button className="text-2xl transition hover:text-[#9cff3b]">
-            <FaUserCircle />
-          </button>
+          <div className="text-2xl transition hover:text-[#9cff3b]">
+            <FaCartArrowDown/>
+          </div>
 
         </div>
       </div>

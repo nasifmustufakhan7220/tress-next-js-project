@@ -1,5 +1,6 @@
 import { ITreeType } from "@/types/TreeType";
 import Image from "next/image";
+import ViewDetails from "../ViewDetailsBtn/ViewDetails";
 
 interface IAllPlantProps {
   tree: ITreeType;
@@ -33,9 +34,7 @@ const Tree = ({ tree }: IAllPlantProps) => {
           <div className="mt-3 flex items-center justify-between">
             <p className="text-xl font-bold text-green-700">${price}</p>
 
-            <button className="flex items-center px-6 py-2 justify-center rounded-xl bg-green-700 text-white cursor-pointer">
-              View Details
-            </button>
+            <ViewDetails tree={tree} />
           </div>
         </div>
       </div>
