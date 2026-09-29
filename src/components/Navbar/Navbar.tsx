@@ -8,7 +8,8 @@ import { FaCartArrowDown } from "react-icons/fa6";
 
 const Navbar = () => {
   const pathname = usePathname();
-  const {carts, favourites} = useContext(TreeContext);
+  const {carts, favourites, search, setSearch} = useContext(TreeContext);
+  console.log(search);
   const links = (
     <>
       <Link
@@ -45,6 +46,8 @@ const Navbar = () => {
           <div className="hidden items-center rounded-full bg-white/15 px-4 py-2 lg:flex">
             <input
               type="text"
+              value={search}
+              onChange={(e)=> setSearch(e.target.value)}
               placeholder="Search trees..."
               className="w-36 bg-transparent text-sm text-white outline-none placeholder:text-white/60"
             />

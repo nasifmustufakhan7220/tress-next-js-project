@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import TreesContextProvider from "@/context/TreesContextProvider";
 import { Bounce, ToastContainer } from "react-toastify";
+import Footer from "@/components/Footer/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <TreesContextProvider>
           <Navbar />
           {children}
+          <Footer/>
           <ToastContainer
             position="top-right"
             autoClose={5000}

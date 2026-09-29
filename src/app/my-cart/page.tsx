@@ -2,10 +2,12 @@
 import Cart from "@/components/Cart/Cart";
 import EmptyShowing from "@/components/EmptyShowing/EmptyShowing";
 import { TreeContext } from "@/context/TreesContextProvider";
+import { Spinner } from "@heroui/react";
 import { useContext } from "react";
 
 const MyCartPage = () => {
-  const { carts, favourites, toggle, setToggle } = useContext(TreeContext);
+  const { carts, favourites, toggle, setToggle, isLoading } =
+    useContext(TreeContext);
 
   return (
     <div className="min-h-screen bg-[#f6f8f3]">
@@ -130,16 +132,17 @@ const MyCartPage = () => {
         <div className="tabs tabs-box w-fit">
           {/* In Cart */}
           <input
-            onChange={() => setToggle(true)}
+            checked={toggle}
+              onChange={() => setToggle(true)}
             type="radio"
             name="tree_tabs"
             className="tab font-semibold text-[#1f3a24]"
             aria-label="In Cart"
-            defaultChecked
           />
 
           {/* Favorites */}
           <input
+            checked={!toggle}
             onChange={() => setToggle(false)}
             type="radio"
             name="tree_tabs"
@@ -149,7 +152,12 @@ const MyCartPage = () => {
         </div>
         {toggle ? (
           <div className="mt-0 w-full border border-[#dce5d7] bg-white p-5 sm:p-6">
-            {carts.length > 0 ? (
+            {isLoading ? (
+              <div className="flex flex-col items-center gap-2">
+                <Spinner size="xl" />
+                <span className="text-xs text-muted">Data Loading....</span>
+              </div>
+            ) : carts.length > 0 ? (
               <div className="mt-6 rounded-2xl border border-[#dce5d7] bg-[#f8faf6] p-4">
                 {carts.map((cart) => (
                   <Cart key={cart.id} cart={cart} />
@@ -161,7 +169,12 @@ const MyCartPage = () => {
           </div>
         ) : (
           <div className="mt-0 w-full border border-[#dce5d7] bg-white p-5 sm:p-6">
-            {favourites.length > 0 ? (
+            {isLoading ? (
+              <div className="flex flex-col items-center gap-2">
+                <Spinner size="xl" />
+                <span className="text-xs text-muted">Data Loading....</span>
+              </div>
+            ) : favourites.length > 0 ? (
               <div className="mt-6 rounded-2xl border border-[#dce5d7] bg-[#f8faf6] p-4">
                 {favourites.map((favourite) => (
                   <Cart key={favourite.id} cart={favourite} />

@@ -1,7 +1,6 @@
 import { getAllTrees } from "@/lib/treesData.types";
 import { ITreeType } from "@/types/TreeType";
-import React from "react";
-import Tree from "../Tree/Tree";
+import TreesClient from "./TreesClient";
 
 const Trees = async () => {
   const trees: ITreeType[] = await getAllTrees();
@@ -11,7 +10,7 @@ const Trees = async () => {
   }
 
   return (
-    <div className="relative z-10 mx-auto min-h-125 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div id="AllTrees" className="relative z-10 mx-auto min-h-125 w-full max-w-7xl px-4 sm:px-6 lg:px-8 mt-20">
       <div className="w-full">
         <h1 className="text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl">
           All Trees
@@ -21,11 +20,7 @@ const Trees = async () => {
           Find trees based on their type, region or growing environment
         </p>
 
-        <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {trees.map((tree) => (
-            <Tree key={tree.id} tree={tree} />
-          ))}
-        </div>
+        <TreesClient trees={trees} />
       </div>
     </div>
   );

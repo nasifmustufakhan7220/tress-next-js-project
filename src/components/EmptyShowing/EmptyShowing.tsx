@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const EmptyShowing = () => {
@@ -15,9 +16,11 @@ const EmptyShowing = () => {
           choose the trees you want to grow.
         </p>
 
-        <button className="btn mt-5 rounded-lg bg-[#1f3a24] px-6 text-white hover:bg-[#315c39]">
-          Explore Trees
-        </button>
+        <Link href={'/'}>
+          <button className="btn mt-5 rounded-lg bg-[#1f3a24] px-6 text-white hover:bg-[#315c39]">
+            Explore Trees
+          </button>
+        </Link>
       </div>
     </div>
   );

@@ -42,7 +42,7 @@ const FavouriteBtn = ({ tree }: { tree: ITreeType }) => {
     <div>
       <button
         onClick={() => handelFavourite(tree.id)}
-        className="inline-flex items-center justify-center gap-2 rounded-full border border-[#dce8df] bg-white px-6 py-3 font-semibold text-[#063b27] transition hover:bg-[#f6faf7]"
+        className="inline-flex items-center justify-center gap-2 rounded-full border border-[#dce8df] bg-white px-6 py-3 font-semibold text-[#063b27] transition hover:bg-[#f6faf7] cursor-pointer"
       >
         <FaHeart />
         Favorite

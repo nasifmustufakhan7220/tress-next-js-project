@@ -34,7 +34,7 @@ const Banner = () => {
           </p>
 
           <a
-            href="#trees"
+            href="#AllTrees"
             className="mt-7 inline-flex items-center gap-3 rounded-full bg-[#9cff3b] px-6 py-3 font-semibold text-[#063b27] transition hover:bg-[#b5ff6b]"
           >
             Explore Trees

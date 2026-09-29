@@ -1,6 +1,7 @@
 import { ITreeType } from "@/types/TreeType";
 import Image from "next/image";
 import React from "react";
+import RemoveBtn from "./RemoveBtn";
 
 const Cart = ({cart}:{cart:ITreeType}) => {
   return (
@@ -13,6 +14,7 @@ const Cart = ({cart}:{cart:ITreeType}) => {
             width={200}
             height={200}
             alt="Mango Tree"
+            unoptimized
             className="h-full w-full object-cover"
           />
         </div>
@@ -46,9 +48,7 @@ const Cart = ({cart}:{cart:ITreeType}) => {
           <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
 
             {/* Remove */}
-            <button className="text-sm font-medium text-red-500 hover:text-red-600">
-              Remove
-            </button>
+            <RemoveBtn tree={cart} />
           </div>
         </div>
       </div>

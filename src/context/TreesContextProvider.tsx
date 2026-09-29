@@ -9,6 +9,10 @@ interface ITreeContext {
     setFavourites: Dispatch<SetStateAction<ITreeType[]>>;
     toggle: boolean;
     setToggle: Dispatch<SetStateAction<boolean>>;
+    isLoading: boolean;
+    isDisabled: boolean;
+    search:string,
+    setSearch : Dispatch<SetStateAction<string>>
 }
 
 export const TreeContext = createContext<ITreeContext>({
@@ -17,7 +21,11 @@ export const TreeContext = createContext<ITreeContext>({
     favourites:[],
     setFavourites: ()=>{},
     toggle: true,
-    setToggle: ()=>{}
+    setToggle: ()=>{},
+    isLoading: true,
+    isDisabled: true,
+    search: "",
+    setSearch: ()=>{}
 });
 const TreesContextProvider = ({children}:{children:ReactNode}) => {
 
@@ -25,6 +33,7 @@ const TreesContextProvider = ({children}:{children:ReactNode}) => {
     const [favourites, setFavourites] = useState<ITreeType[]>([]);
     const [toggle, setToggle] = useState<boolean>(true);
     const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [search, setSearch] = useState<string>("");
 
     useEffect(()=>{
         const cart = localStorage.getItem('carts');
@@ -53,13 +62,19 @@ const TreesContextProvider = ({children}:{children:ReactNode}) => {
         }
     },[favourites,isLoading]);
 
+    const isDisabled = carts.length >= 5
+
     const contextObj = {
         carts,
         setCarts,
         favourites,
         setFavourites,
         toggle,
-        setToggle
+        setToggle,
+        isLoading,
+        isDisabled,
+        search,
+        setSearch
     };
     return <TreeContext.Provider value={contextObj}>
         {children}

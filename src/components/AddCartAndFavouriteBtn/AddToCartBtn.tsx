@@ -6,7 +6,7 @@ import { FaCartFlatbed } from "react-icons/fa6";
 import { Bounce, toast } from "react-toastify";
 
 const AddToCartBtn = ({ tree }: { tree: ITreeType }) => {
-  const { carts, setCarts } = useContext(TreeContext);
+  const { carts, setCarts, isDisabled } = useContext(TreeContext);
 
   const handelAddToCart = (id: number) => {
     const exited = carts.find((treeId) => treeId.id === id);
@@ -44,7 +44,8 @@ const AddToCartBtn = ({ tree }: { tree: ITreeType }) => {
     <div>
       <button
         onClick={() => handelAddToCart(tree.id)}
-        className="inline-flex items-center justify-center gap-2 rounded-full bg-[#063b27] px-6 py-3 font-semibold text-white transition hover:bg-[#085638]"
+        disabled={isDisabled}
+        className={`${isDisabled ? "inline-flex items-center justify-center gap-2 rounded-full bg-[#bebebe] px-6 py-3 font-semibold text-[#565555] cursor-not-allowed" : "inline-flex items-center justify-center gap-2 rounded-full bg-[#063b27] px-6 py-3 font-semibold text-white transition hover:bg-[#085638] cursor-pointer"}`}
       >
         <FaCartFlatbed />
         Add to Cart
