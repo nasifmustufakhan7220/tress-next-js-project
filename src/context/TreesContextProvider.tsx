@@ -1,22 +1,38 @@
+"use client"
 import { ITreeType } from "@/types/TreeType";
 import { createContext, Dispatch, ReactNode, SetStateAction, useState } from "react";
 
 interface ITreeContext {
-    cart:ITreeType[];
-    setCart: Dispatch<SetStateAction<ITreeType[]>>
+    carts:ITreeType[];
+    setCarts: Dispatch<SetStateAction<ITreeType[]>>;
+    favourites:ITreeType[];
+    setFavourites: Dispatch<SetStateAction<ITreeType[]>>;
 }
 
 export const TreeContext = createContext<ITreeContext>({
-    cart: [],
-    setCart: ()=>{}
+    carts: [],
+    setCarts: ()=>{},
+    favourites:[],
+    setFavourites: ()=>{}
 });
 const TreesContextProvider = ({children}:{children:ReactNode}) => {
 
-    const [cart,setCart] = useState<ITreeType[]>([]);
+    const [carts,setCarts] = useState<ITreeType[]>([]);
+    const [favourites, setFavourites] = useState<ITreeType[]>([])
+
+    // useEffect(()=>{
+    //     const storedCartTrees = localStorage.getItem("cart");
+
+    //     if(storedCartTrees){
+    //         const parsedCart = JSON.parse(storedCartTrees);
+    //     }
+    // },[]);
 
     const contextObj = {
-        cart,
-        setCart
+        carts,
+        setCarts,
+        favourites,
+        setFavourites
     };
     return <TreeContext.Provider value={contextObj}>
         {children}

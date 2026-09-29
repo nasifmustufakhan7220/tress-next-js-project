@@ -6,11 +6,12 @@ import { FaCartArrowDown } from "react-icons/fa6";
 
 const Navbar = () => {
     const pathname = usePathname();
-    const links = (
+    const links = 
         <>
             <Link className={`${pathname === '/' ? "text-[#9cff3b] border-b-2 border-[#9cff3b] pb-1" : ""}font-medium`} href={`/`}>Home</Link>
+
+            <Link className={`${pathname === '/my-cart' ? "text-[#9cff3b] border-b-2 border-[#9cff3b] pb-1" : ""}font-medium`} href={'/my-cart'}>Carts</Link>
         </>
-    )
   return (
     <nav className="bg-[#063b27] text-white">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">

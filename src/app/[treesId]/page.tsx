@@ -1,9 +1,11 @@
+import AddToCartBtn from "@/components/AddCartAndFavouriteBtn/AddToCartBtn";
+import FavouriteBtn from "@/components/AddCartAndFavouriteBtn/FavouriteBtn";
 import { getAllTrees } from "@/lib/treesData.types";
 import { ITreeType } from "@/types/TreeType";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { FaArrowLeft, FaHeart, FaLeaf, FaShieldHeart, FaSun, FaTree } from "react-icons/fa6";
+import { FaArrowLeft, FaLeaf, FaShieldHeart, FaSun, FaTree } from "react-icons/fa6";
 
 const TreeDetailsPage = async ({
   params,
@@ -78,15 +80,9 @@ const TreeDetailsPage = async ({
 
               {/* Buttons */}
               <div className="mt-8 flex flex-wrap gap-3">
-                <button className="inline-flex items-center justify-center gap-2 rounded-full bg-[#063b27] px-6 py-3 font-semibold text-white transition hover:bg-[#085638]">
-                  <FaLeaf />
-                  Add to Cart
-                </button>
+                <AddToCartBtn tree={tree} />
 
-                <button className="inline-flex items-center justify-center gap-2 rounded-full border border-[#dce8df] bg-white px-6 py-3 font-semibold text-[#063b27] transition hover:bg-[#f6faf7]">
-                  <FaHeart />
-                  Favorite
-                </button>
+                <FavouriteBtn tree={tree} />
               </div>
             </div>
           </div>
